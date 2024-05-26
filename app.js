@@ -68,16 +68,16 @@ async function dbConect()
     
     //await db.query('CREATE TABLE juan(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
     
-    //await db.query('CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100))')
+    await db.query('CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100))')
 
-    await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
+    //await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
 
 
     await db.query("INSERT INTO logins(login, senha) VALUES('soraia', 'pipoca1')")
     await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
 
 
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
     //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto da mãe', 2,'nao', 1)")
     //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Tirar o lixo', 3,'nao', 0.5)")
     //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Quintal', 4,'nao', 2)")
