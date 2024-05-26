@@ -122,6 +122,12 @@ function oraganizandoCdiv(objetos)
 
 function criandoregistro(objetos)
 {
+    let y = '<div id="points">';
+    y += '<h1 style="margin: 0px;">Pontos</h1>';
+    y += '<h2 style="margin: 0px; color: green;" id="pontuação">55</h2>';
+    y += ' </div>';
+
+    document.getElementById("divpoints").innerHTML = y;
 
     for(let i = 0; i < objetos.length; i++) {criarRegistro(objetos[i])}
 
