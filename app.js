@@ -12,7 +12,6 @@ const db = require('./database.js')
 
 //timer
 var h,m,s = 0;
-var Anteriorday = 25;
     const opcoes = {
         timeZone: 'America/Sao_Paulo',
         hour: 'numeric',
@@ -30,11 +29,19 @@ setInterval(() => {
     const dataHora = new Date();  
     datahoraD = dataHora.toLocaleDateString('pt-BR', opcoesD);
     datahoraH = dataHora.toLocaleString('pt-BR', opcoes);
+    let p = async function antedia()
+    {
 
-    if(Anteriorday != datahoraD && datahoraH > 6) {
+        let i = await db.query("SELEC * FROM dia");
+        return i.rows.anterior;
+
+    }
+    
+
+    if(p != datahoraD && datahoraH > 6) {
 
         relacaoPontos();
-        Anteriorday = datahoraD;
+        db.query("UPDATE dia SET anterior = " + datahoraD);
         console.log('rodando relação');
 
     }
@@ -81,6 +88,8 @@ async function dbConect()
 
     //await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
 
+    await db.query("CREATE TABLE dia(anterior INT)")
+    await db.query("INSERT INTO dia(anterior) VALUES(26)")
 
     //await db.query("INSERT INTO logins(login, senha) VALUES('soraia', 'pipoca1')")
     //await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
@@ -151,15 +160,21 @@ app.post('/login', (req,res) => {
 
 });
 app.post('/aiponfwaifjnawofn', (req,res) => {
-    let r = new Date();
-    let d = (r.getDay() + '/');
-    d += (r.getMonth() + '/');
-    d += (r.getFullYear() + ' ');
-    d += (r.getHours() + ':' + r.getMinutes() + ':' + r.getSeconds());
 
-
+    let d = new Date();
+    let o = {
+        timeZone: 'America/Sao_Paulo',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+    };
+    let l = d.toLocaleString('pt-BR', o);
+    
     db.query("UPDATE " + req.body.pessoa + " SET feito = '" + req.body.feito + "' WHERE ID = " + req.body.tarefa + "");
-    db.query("INSERT INTO registros(data, tarefa, pessoa, feito) VALUES('" + d + "', '" + req.body.tarefa + "', '" + req.body.pessoa + "', '" + req.body.feito + "')")
+    db.query("INSERT INTO registros(data, tarefa, pessoa, feito) VALUES('" + l + "', '" + req.body.tarefa + "', '" + req.body.pessoa + "', '" + req.body.feito + "')")
 
 });
 app.post('/registros', (req,res) => {
