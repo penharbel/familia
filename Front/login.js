@@ -32,7 +32,7 @@ function Cdiv(task, confirmacao, id)
             document.getElementById(e.id).style.backgroundColor = 'rgb(126, 218, 131)';
             divs[e.id].feito = 'sim';
 
-            fetch('http://localhost:4000/aiponfwaifjnawofn', 
+            fetch('https://familia-jx4m.onrender.com/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -48,7 +48,7 @@ function Cdiv(task, confirmacao, id)
 
             document.getElementById(e.id).style.backgroundColor = 'rgb(204, 204, 204)';
             divs[e.id].feito = 'nao';
-            fetch('http://localhost:4000/aiponfwaifjnawofn', 
+            fetch('https://familia-jx4m.onrender.com/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -68,7 +68,7 @@ function Cdiv(task, confirmacao, id)
 async function Timer()
 {
 
-    let c = await fetch('http://localhost:4000/timer',
+    let c = await fetch('https://familia-jx4m.onrender.com/timer',
     {
         headers: {
           'Accept': 'application/json',
@@ -99,7 +99,7 @@ async function ObterInfo(log, sen)
 
     };
 
-    await fetch('http://localhost:4000/login',
+    await fetch('https://familia-jx4m.onrender.com/login',
     {
         headers: {
           'Accept': 'application/json',
@@ -173,7 +173,7 @@ window.addEventListener("load", () => {
         async function registrospost()
         {
 
-            await fetch('http://localhost:4000/registros',
+            await fetch('https://familia-jx4m.onrender.com/registros',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -195,7 +195,7 @@ window.addEventListener("load", () => {
         async function pontos()
         {
 
-            await fetch('http://localhost:4000/pontos',
+            await fetch('https://familia-jx4m.onrender.com/pontos',
             {
                 headers: {
                     'Accept': 'application/json',
