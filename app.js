@@ -32,7 +32,7 @@ setInterval(() => {
     {
 
         let i = await db.query("SELECT * FROM dia");
-        console.log(i.rows.anterior)
+        console.log(i.rows.anterior + ' // ' + datahoraD)
         if(i.rows.anterior != datahoraD && datahoraH > 6) {
 
             relacaoPontos();
