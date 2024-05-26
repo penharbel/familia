@@ -214,7 +214,7 @@ window.addEventListener("load", () => {
 
 setInterval(() => {
     
-    const dataHora = new Date('2023-10-27T15:30:00');
+    const dataHora = new Date();
       const opcoes = {
         timeZone: 'America/Sao_Paulo',
         hour: 'numeric',
