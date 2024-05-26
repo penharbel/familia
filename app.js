@@ -32,19 +32,19 @@ setInterval(() => {
     {
 
         let i = await db.query("SELECT * FROM dia");
-        return i.rows.anterior;
+        console.log(i)
+        if(i.rows.anterior != datahoraD && datahoraH > 6) {
+
+            relacaoPontos();
+            db.query("UPDATE dia SET anterior = " + datahoraD);
+            console.log('rodando relação');
+
+        }
 
     }
-    let p = antedia();
+    antedia();
     
-    console.log(p)
-    if(p != datahoraD && datahoraH > 6) {
-
-        relacaoPontos();
-        db.query("UPDATE dia SET anterior = " + datahoraD);
-        console.log('rodando relação');
-
-    }
+    
         
 }, 10000);
     
