@@ -2,7 +2,6 @@
 const bodyParser = require("body-parser");
 const Express = require("express");
 const app = Express();
-const ejs = require('ejs')
 
 const db = require('./database.js')
 
