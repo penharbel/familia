@@ -87,8 +87,8 @@ async function dbConect()
 
     //await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
 
-    //await db.query("CREATE TABLE dia(anterior INT)")
-    //await db.query("INSERT INTO dia(anterior) VALUES(26)")
+    await db.query("CREATE TABLE dia(anterior INT)")
+    await db.query("INSERT INTO dia(anterior) VALUES(26)")
 
     //await db.query("INSERT INTO logins(login, senha) VALUES('soraia', 'pipoca1')")
     //await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
