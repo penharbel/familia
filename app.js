@@ -60,15 +60,9 @@ async function relacaoPontos()
 //database
 async function dbConect()
 {
-    setInterval(() => {
 
         db.connect()
         .then(console.log('Banco conectado'))
-        let b = db.query("SELECT * FROM soraia")
-        console.log(b.rows)
-        
-    }, 60000);
-    
     
     //await db.query('CREATE TABLE soraia(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
     
@@ -83,22 +77,22 @@ async function dbConect()
     //await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
 
 
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto da mãe', 2,'nao', 1)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Tirar o lixo', 3,'nao', 0.5)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Quintal', 4,'nao', 2)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Recolher a roupa', 5,'nao', 1)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Dobrar a roupa', 6,'nao', 1.5)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto da mãe', 2,'nao', 1)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Tirar o lixo', 3,'nao', 0.5)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Quintal', 4,'nao', 2)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Recolher a roupa', 5,'nao', 1)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Dobrar a roupa', 6,'nao', 1.5)")
 
 
     
 
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto', 7,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar a sala', 8,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Quintal', 9,'nao', 2)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a louça', 10,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a roupa', 11,'nao', 1.5)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Estender a roupa', 12,'nao', 0.5)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto', 7,'nao', 1)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar a sala', 8,'nao', 1)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Quintal', 9,'nao', 2)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a louça', 10,'nao', 1)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a roupa', 11,'nao', 1.5)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Estender a roupa', 12,'nao', 0.5)")
 
 }
 dbConect();
