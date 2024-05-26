@@ -62,12 +62,6 @@ async function relacaoPontos()
 async function dbConect()
 {
 
-    await dbd.connect()
-    .then(console.log('Banco de dados Conectado'))
-
-    
-    await dbd.query("CREATE DATABASE crianças")
-
     await db.connect()
     .then(console.log('Banco conectado'))
     
