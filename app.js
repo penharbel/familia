@@ -35,9 +35,10 @@ setInterval(() => {
         return i.rows.anterior;
 
     }
+    let p = antedia();
     
     console.log(p)
-    if(antedia() != datahoraD && datahoraH > 6) {
+    if(p != datahoraD && datahoraH > 6) {
 
         relacaoPontos();
         db.query("UPDATE dia SET anterior = " + datahoraD);
