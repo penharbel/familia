@@ -12,24 +12,33 @@ const db = require('./database.js')
 
 //timer
 var h,m,s = 0;
-h = 23;
-m = 59
-s = 59
-setInterval(() => {
-    s -= 1;
-    if(s == 0) {
-        s = 59;
-        m -= 1;
-        if(m == 0) {
-            m = 59;
-            h -= 1;
-            if(h == 0) {
-                h = 24;
-            }
-        }
-    }
-    if(h == 6 && m == 59 && s == 59) { relacaoPontos(); }
+var Anteriorday = 25;
+    const opcoes = {
+        timeZone: 'America/Sao_Paulo',
+        hour: 'numeric',
+    };
+    const opcoesD = {
+        timeZone: 'America/Sao_Paulo',
+        day: 'numeric',
+    };
 
+    var datahoraH; 
+    var datahoraD ;
+
+setInterval(() => {
+
+    const dataHora = new Date();  
+    datahoraD = dataHora.toLocaleDateString('pt-BR', opcoesD);
+    datahoraH = dataHora.toLocaleString('pt-BR', opcoes);
+
+    if(Anteriorday != datahoraD && datahoraH > 6) {
+
+        relacaoPontos();
+        Anteriorday = datahoraD;
+        console.log('rodando relação');
+
+    }
+        
 }, 1000);
     
 async function relacaoPontos()
@@ -151,19 +160,6 @@ app.post('/aiponfwaifjnawofn', (req,res) => {
 
     db.query("UPDATE " + req.body.pessoa + " SET feito = '" + req.body.feito + "' WHERE ID = " + req.body.tarefa + "");
     db.query("INSERT INTO registros(data, tarefa, pessoa, feito) VALUES('" + d + "', '" + req.body.tarefa + "', '" + req.body.pessoa + "', '" + req.body.feito + "')")
-
-});
-app.post('/timer', (req,res) => {
-
-    let g = {
-
-        horas: h,
-        minutos: m,
-        segundos: s
-
-    }
-
-    res.send(g);
 
 });
 app.post('/registros', (req,res) => {

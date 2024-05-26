@@ -65,26 +65,6 @@ function Cdiv(task, confirmacao, id)
     ids++;
 }
 
-async function Timer()
-{
-
-    let c = await fetch('https://familia-jx4m.onrender.com/timer',
-    {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({last: 'jorge',})
-    }).then((response) => { 
-        response.json().then((horas) => { 
-            document.getElementById("horario").innerHTML = horas.horas + ':' + horas.minutos + ':' + horas.segundos
-         })
-    })
-
-    
-}
-
 async function ObterInfo(log, sen)
 {
 
@@ -176,28 +156,6 @@ window.addEventListener("load", () => {
 
         }
 
-        async function registrospost()
-        {
-
-            await fetch('https://familia-jx4m.onrender.com/registros',
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify(a)
-            }).then((response) => { 
-                response.json().then((informacoes) => { 
-
-                    criandoregistro(informacoes);
-
-                })
-            })
-
-        }
-        registrospost();
-
         async function pontos()
         {
 
@@ -220,6 +178,28 @@ window.addEventListener("load", () => {
         }
         pontos();
 
+        async function registrospost()
+        {
+
+            await fetch('https://familia-jx4m.onrender.com/registros',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(a)
+            }).then((response) => { 
+                response.json().then((informacoes) => { 
+
+                    criandoregistro(informacoes);
+
+                })
+            })
+
+        }
+        registrospost();
+
     })
 
     document.getElementById("Divinfo").addEventListener("click", () => {
@@ -233,6 +213,16 @@ window.addEventListener("load", () => {
 }, false)
 
 setInterval(() => {
-    Timer();
+    
+    const dataHora = new Date('2023-10-27T15:30:00');
+      const opcoes = {
+        timeZone: 'America/Sao_Paulo',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      };
+      const dataHoraBrasil = dataHora.toLocaleString('pt-BR', opcoes);
+      document.getElementById("horario").innerHTML = dataHoraBrasil;
+
 }, 1000);
 
