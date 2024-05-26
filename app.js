@@ -31,7 +31,7 @@ setInterval(() => {
     async function antedia()
     {
 
-        let i = await db.query("SELEC * FROM dia");
+        let i = await db.query("SELECT * FROM dia");
         return i.rows.anterior;
 
     }
