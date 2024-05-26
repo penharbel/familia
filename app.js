@@ -28,7 +28,7 @@ setInterval(() => {
     const dataHora = new Date();  
     datahoraD = dataHora.toLocaleDateString('pt-BR', opcoesD);
     datahoraH = dataHora.toLocaleString('pt-BR', opcoes);
-    let p = async function antedia()
+    async function antedia()
     {
 
         let i = await db.query("SELEC * FROM dia");
@@ -37,7 +37,7 @@ setInterval(() => {
     }
     
     console.log(p)
-    if(p != datahoraD && datahoraH > 6) {
+    if(antedia() != datahoraD && datahoraH > 6) {
 
         relacaoPontos();
         db.query("UPDATE dia SET anterior = " + datahoraD);
