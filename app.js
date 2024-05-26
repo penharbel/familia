@@ -4,7 +4,6 @@ const Express = require("express");
 const app = Express();
 const ejs = require('ejs')
 
-const dbd = require('./databaseInit.js')
 const db = require('./database.js')
 
 //pontuação
