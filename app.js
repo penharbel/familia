@@ -60,9 +60,15 @@ async function relacaoPontos()
 //database
 async function dbConect()
 {
+    setInterval(() => {
 
-    await db.connect()
-    .then(console.log('Banco conectado'))
+        db.connect()
+        .then(console.log('Banco conectado'))
+        let b = db.query("SELECT * FROM soraia")
+        console.log(b.rows)
+        
+    }, 60000);
+    
     
     //await db.query('CREATE TABLE soraia(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
     
