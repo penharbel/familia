@@ -11,7 +11,6 @@ const db = require('./database.js')
  let juan = -7;
 
 //timer
-var h,m,s = 0;
     const opcoes = {
         timeZone: 'America/Sao_Paulo',
         hour: 'numeric',
@@ -37,7 +36,7 @@ setInterval(() => {
 
     }
     
-
+    console.log(p)
     if(p != datahoraD && datahoraH > 6) {
 
         relacaoPontos();
@@ -46,7 +45,7 @@ setInterval(() => {
 
     }
         
-}, 1000);
+}, 10000);
     
 async function relacaoPontos()
 {
