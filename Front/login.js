@@ -32,7 +32,7 @@ function Cdiv(task, confirmacao, id)
             document.getElementById(e.id).style.backgroundColor = 'rgb(126, 218, 131)';
             divs[e.id].feito = 'sim';
 
-            fetch('http://localhost:4000/aiponfwaifjnawofn', 
+            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -48,7 +48,7 @@ function Cdiv(task, confirmacao, id)
 
             document.getElementById(e.id).style.backgroundColor = 'rgb(204, 204, 204)';
             divs[e.id].feito = 'nao';
-            fetch('http://localhost:4000/aiponfwaifjnawofn', 
+            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -154,7 +154,7 @@ window.addEventListener("load", () => {
         async function pontos()
         {
 
-            await fetch('http://localhost:4000/pontos',
+            await fetch('https://familia-8n1x.onrender.com/pontos',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -181,7 +181,7 @@ window.addEventListener("load", () => {
         async function registrospost()
         {
 
-            await fetch('http://localhost:4000/registros',
+            await fetch('https://familia-8n1x.onrender.com/registros',
             {
                 headers: {
                     'Accept': 'application/json',
