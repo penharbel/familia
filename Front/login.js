@@ -195,7 +195,7 @@ window.addEventListener("load", () => {
                     'Content-Type': 'application/json'
                 },
                 method: "POST",
-                body: JSON.stringify(a)
+                body: JSON.stringify(b)
             }).then((response) => { 
                 response.json().then((informacoes) => { 
 
