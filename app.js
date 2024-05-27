@@ -71,7 +71,6 @@ async function relacaoPontos()
     o.rows[0].juanpts += aB
 
     await db.query("UPDATE dia SET soraiapts = " + o.rows[0].soraiapts + ", juanpts = " + o.rows[0].juanpts)
-    let p = await db.query("SELECT * FROM dia")
 
 }
 
