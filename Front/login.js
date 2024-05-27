@@ -32,7 +32,7 @@ function Cdiv(task, confirmacao, id)
             document.getElementById(e.id).style.backgroundColor = 'rgb(126, 218, 131)';
             divs[e.id].feito = 'sim';
 
-            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
+            fetch('http://localhost:4000/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -48,7 +48,7 @@ function Cdiv(task, confirmacao, id)
 
             document.getElementById(e.id).style.backgroundColor = 'rgb(204, 204, 204)';
             divs[e.id].feito = 'nao';
-            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
+            fetch('http://localhost:4000/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -71,7 +71,7 @@ async function ObterInfo(log, sen)
     document.getElementById("DivlogForm").style.display = 'none';
 
     crionça = log;
-    document.getElementById("H1Header").innerHTML = log
+    document.getElementById("H1Header").innerHTML = log;
 
     let e = { 
 
@@ -80,7 +80,7 @@ async function ObterInfo(log, sen)
 
     };
 
-    await fetch('https://familia-8n1x.onrender.com/login',
+    await fetch('http://localhost:4000/login',
     {
         headers: {
           'Accept': 'application/json',
@@ -103,12 +103,6 @@ function oraganizandoCdiv(objetos)
 
 function criandoregistro(objetos)
 {
-    let y = '<div id="points">';
-    y += '<h1 style="margin: 0px;">Pontos</h1>';
-    y += '<h2 style="margin: 0px; color: green;" id="pontuação">55</h2>';
-    y += ' </div>';
-
-    document.getElementById("divpoints").innerHTML = y;
 
     for(let i = 0; i < objetos.length; i++) {criarRegistro(objetos[i])}
 
@@ -160,7 +154,7 @@ window.addEventListener("load", () => {
         async function pontos()
         {
 
-            await fetch('https://familia-8n1x.onrender.com/pontos',
+            await fetch('http://localhost:4000/pontos',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -171,7 +165,12 @@ window.addEventListener("load", () => {
             }).then((response) => { 
                 response.json().then((informacoes) => { 
 
-                    document.getElementById("pontuação").innerHTML = informacoes.pontos;
+                    let y = '<div id="points">';
+                    y += '<h1 style="margin: 0px;">Pontos</h1>';
+                    y += '<h2 style="margin: 0px; color: green;" id="pontuação">'+ informacoes.pontos +'</h2>';
+                    y += ' </div>';
+
+                    document.getElementById("divpoints").innerHTML = y;
 
                 })
             })
@@ -182,7 +181,7 @@ window.addEventListener("load", () => {
         async function registrospost()
         {
 
-            await fetch('https://familia-8n1x.onrender.com/registros',
+            await fetch('http://localhost:4000/registros',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -202,6 +201,7 @@ window.addEventListener("load", () => {
         registrospost();
 
     })
+
 
     document.getElementById("Divinfo").addEventListener("click", () => {
 
