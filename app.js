@@ -192,21 +192,23 @@ app.post('/registros', (req,res) => {
 
 });
 app.post("/pontos", (req,res) => {
-
-
-    if(req.body.pessoa == 'soraia') {
+    async function points()
+    {
+        let p = await db.query("SELECT * FROM dia")
+        if(req.body.pessoa == 'soraia') {
         let v = {
-            pontos: soraia,
+            pontos: p.rows[0].soraiapts,
         }
-        res.send(v)
-    };
-    if(req.body.pessoa == 'juan') { 
-        let v = {
-            pontos: juan,
-        }
-        res.send(v)
-    };
-
+            res.send(v)
+        };
+        if(req.body.pessoa == 'juan') { 
+            let v = {
+                pontos: p.rows[0].juanpts,
+            }
+            res.send(v)
+        };
+    }
+    points();
 });
 
 //listen
