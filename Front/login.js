@@ -71,6 +71,7 @@ async function ObterInfo(log, sen)
     document.getElementById("DivlogForm").style.display = 'none';
 
     crionça = log;
+    document.getElementById("H1Header").innerHTML = log
 
     let e = { 
 
