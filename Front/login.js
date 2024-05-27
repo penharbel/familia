@@ -152,6 +152,12 @@ window.addEventListener("load", () => {
 
         }
 
+        let b = {
+
+            pessoa: crionça,
+
+        }
+
         async function pontos()
         {
 
