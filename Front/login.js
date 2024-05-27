@@ -144,10 +144,11 @@ window.addEventListener("load", () => {
     document.getElementById("BtnHeader").addEventListener('click', () => {
 
         document.getElementById("Divinfo").style.display = 'flex';
+        let aS = crionça.toLowerCase();
 
         let a = {
 
-            pessoa: crionça,
+            pessoa: aS,
 
         }
 
