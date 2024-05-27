@@ -30,13 +30,12 @@ setInterval(() => {
     async function antedia()
     {
 
-        let i = await db.query("SELECT * FROM dia");
-        console.log(i.rows + ' // ' + datahoraD)
-        if(i.rows.anterior != datahoraD && datahoraH > 6) {
-
-            relacaoPontos();
-            db.query("UPDATE dia SET anterior = " + datahoraD);
-            console.log('rodando relação');
+        let o = await db.query("SELECT * FROM dia")
+        
+        if(o.rows[0].anterior != datahoraD && datahoraH > 6) { 
+            
+            db.query("UPDATE dia SET anterior = " + datahoraD)
+            relacaoPontos()
 
         }
 
@@ -45,7 +44,7 @@ setInterval(() => {
     
     
         
-}, 10000);
+}, 1000);
     
 async function relacaoPontos()
 {
@@ -67,8 +66,12 @@ async function relacaoPontos()
 
     }
 
-    soraia += aB;
-    juan += bB;
+    let o = await db.query("SELECT * FROM dia")
+    o.rows[0].soraiapts += aB
+    o.rows[0].juanpts += aB
+
+    await db.query("UPDATE dia SET soraiapts = " + o.rows[0].soraiapts + ", juanpts = " + o.rows[0].juanpts)
+    let p = await db.query("SELECT * FROM dia")
 
 }
 
@@ -79,36 +82,37 @@ async function dbConect()
     db.connect()
     .then(console.log('Banco conectado'))
     
-    //await db.query('CREATE TABLE soraia(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
+    await db.query('CREATE TABLE soraia(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
     
-    //await db.query('CREATE TABLE juan(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
+    await db.query('CREATE TABLE juan(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
     
-    //await db.query('CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100))')
+    await db.query('CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100))')
 
-    //await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
+    await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
 
-    //await db.query("CREATE TABLE dia(anterior INT)")
-    //await db.query("INSERT INTO dia(anterior) VALUES(26)")
-
-    //await db.query("INSERT INTO logins(login, senha) VALUES('soraia', 'pipoca1')")
-    //await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
+    await db.query("CREATE TABLE dia(anterior INT, soraiapts INT, juanpts INT)")
+    await db.query("INSERT INTO dia(anterior, soraiapts, juanpts) VALUES(27, 7, -2)")
 
 
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto da mãe', 2,'nao', 1)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Tirar o lixo', 3,'nao', 0.5)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Quintal', 4,'nao', 2)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Recolher a roupa', 5,'nao', 1)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Dobrar a roupa', 6,'nao', 1.5)")
+    await db.query("INSERT INTO logins(login, senha) VALUES('Soraia', 'karina-luta')")
+    await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
+
+
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto da mãe', 2,'nao', 1)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Tirar o lixo', 3,'nao', 0.5)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Quintal', 4,'nao', 2)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Recolher a roupa', 5,'nao', 1)")
+    await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Dobrar a roupa', 6,'nao', 1.5)")
 
     
 
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto', 7,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar a sala', 8,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Quintal', 9,'nao', 2)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a louça', 10,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a roupa', 11,'nao', 1.5)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Estender a roupa', 12,'nao', 0.5)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto', 7,'nao', 1)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar a sala', 8,'nao', 1)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Quintal', 9,'nao', 2)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a louça', 10,'nao', 1)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a roupa', 11,'nao', 1.5)")
+    await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Estender a roupa', 12,'nao', 0.5)")
 
 }
 dbConect();
