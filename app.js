@@ -5,9 +5,6 @@ const app = Express();
 
 const db = require('./database.js')
 
-//pontuação
- let soraia = 8;
- let juan = -7;
 
 //timer
     const opcoes = {
@@ -33,7 +30,8 @@ setInterval(() => {
         let o = await db.query("SELECT * FROM dia")
         
         if(o.rows[0].anterior != datahoraD && datahoraH > 6) { 
-            
+
+            console.log("rodando relação")
             db.query("UPDATE dia SET anterior = " + datahoraD)
             relacaoPontos()
 
@@ -127,6 +125,7 @@ app.set('view engine', 'ejs')
 
 //Static
 app.use(Express.static(__dirname + "/Front"))
+app.use(Express.static(__dirname + "/FrontADM"))
 
 
 //rotas
@@ -135,6 +134,12 @@ app.get("/", (req,res) => {
     res.render(__dirname + '/Front/login.ejs');
 
 });
+app.get('/ADM57655', (req,res) => {
+
+    res.render(__dirname + '/FrontADM/ADM.ejs');
+
+});
+
 app.post('/login', (req,res) => {
 
     let Login = req.body.login;
@@ -174,9 +179,15 @@ app.post('/aiponfwaifjnawofn', (req,res) => {
         second: 'numeric',
     };
     let l = d.toLocaleString('pt-BR', o);
-    
+
     db.query("UPDATE " + req.body.pessoa + " SET feito = '" + req.body.feito + "' WHERE ID = " + req.body.tarefa + "");
     db.query("INSERT INTO registros(data, tarefa, pessoa, feito) VALUES('" + l + "', '" + req.body.tarefa + "', '" + req.body.pessoa + "', '" + req.body.feito + "')")
+    let i = {
+
+        nada: 'nadinha'
+
+    }
+    res.send(JSON.stringify(i))
 
 });
 app.post('/registros', (req,res) => {
@@ -209,6 +220,48 @@ app.post("/pontos", (req,res) => {
         };
     }
     points();
+});
+app.post('/Ctarefas', (req,res) => {
+
+    async function tasks()
+    {
+
+        let g = await db.query("SELECT * FROM " + req.body.pessoa)
+        res.send(g.rows)
+
+    }
+    tasks()
+
+});
+app.post('/altpts', (req,res) => {
+
+    async function ptss()
+    {
+        let j = await db.query("SELECT * FROM dia");
+        if(req.body.pessoa == 'soraia')
+        {
+
+            j.rows[0].soraiapts += req.body.pontos;
+            db.query('UPDATE dia SET ' + req.body.pessoa + 'pts' +  ' = ' + j.rows[0].soraiapts)
+
+        } else if(req.body.pessoa == 'juan')
+        {
+
+            j.rows[0].juanpts += req.body.pontos;
+            db.query('UPDATE dia SET ' + req.body.pessoa + 'pts' + ' = ' + j.rows[0].juanpts)
+
+        }
+    }
+    ptss();
+
+    let e = {
+
+        nada: 'nadinha',
+
+    }
+    res.send(JSON.stringify(e))
+
+
 });
 
 //listen

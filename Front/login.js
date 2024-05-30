@@ -80,23 +80,29 @@ async function ObterInfo(log, sen)
 
     };
 
-    await fetch('https://familia-8n1x.onrender.com/login',
-    {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(e)
-    }).then((response) => { 
-        response.json().then((informacoes) => { oraganizandoCdiv(informacoes) })
-    })
+    setInterval(() => {
+        fetch('https://familia-8n1x.onrender.com/login',
+        {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(e)
+        }).then((response) => { 
+            response.json().then((informacoes) => { oraganizandoCdiv(informacoes) })
+        })
+    }, 1500);
 
 }
 
 function oraganizandoCdiv(objetos)
 {
 
+    let d = '<div>';
+    d += '<h1 class="MainH1" id="horario">23:59</h1>';
+    d += '</div>';
+    document.getElementById("mainn").innerHTML = d;
     for( let i = 0; i < objetos.length; i++ ) { Cdiv( objetos[i].tarefas, objetos[i].feito, objetos[i].id ); }
 
 }

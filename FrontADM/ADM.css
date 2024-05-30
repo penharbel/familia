@@ -1,0 +1,310 @@
+@charset "UTF-8";
+
+body
+{
+
+    overflow-x: hidden;
+
+}
+
+.MainH1
+{
+
+    width: 40vw;
+    height: 10vw;
+
+}
+
+.MainDiv
+{
+
+    width: 90%;
+    height: 8vh;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(204, 204, 204);
+    border: 1px solid black;
+
+}
+
+.DivH2
+{
+
+    width: 70%;
+    height: 50%;
+    text-align: center;
+
+}
+
+.DivBtn
+{
+
+    width: 30%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px;
+
+
+}
+
+.registros
+{
+    height: 10%;
+    width: 98.5%;
+    border: 2px solid gainsboro;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.regish1
+{
+
+    font-size: 16px;
+
+}
+
+.regish2
+{
+
+    font-size: 16px;
+
+}
+
+.regisp
+{
+
+    font-size: 16px;
+
+}
+
+.points
+{
+
+    width: 98.5%;
+    height: 30%;
+    border: 2px solid gainsboro;
+    background-color: rgba(128, 128, 128, 0.178);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.butonpts
+{
+
+    width: 35%;
+    height: 30%;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.tasks
+{
+
+    border: 2px solid black;
+    background-color: white;
+    height: 130vh;
+    width: 80vw;
+    margin: 3vh;
+
+}
+
+.points
+{
+
+    width: 90%;
+    height: 40%;
+    background-color: antiquewhite;
+    border: 1px solid gainsboro;
+    margin: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+
+#H1Header
+{
+
+    font-size: 30px;
+
+}
+
+#BtnHeader
+{
+
+    width: 14vw;
+    height: 14vw;
+    background-color: rgb(35, 199, 35);
+    border: 1px solid rgb(92, 65, 65);
+    border-radius: 7vw;
+    position: absolute;
+    left: 80vw;
+
+}
+
+#buffer
+{
+
+    height: 10vh;
+
+}
+
+#HeaderButtonImg
+{
+
+    width: 11vw;
+    height: 11vw;
+
+}
+
+#logForm
+{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+#DivlogForm
+{
+
+    width: 90vw;
+    height: 90vh;
+    position: absolute;
+    background-color: rgb(128, 128, 128);
+    margin: -8px;
+    top: 2vh;
+    left: 7vw;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 25px;
+
+}
+
+#btnform
+{
+
+    width: 20vw;
+    height: 5vh;
+
+}
+
+#Divinfo
+{
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(128, 128, 128, 0.493);
+    width: 100vw;
+    height: 100vh;
+    z-index: 12;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#divpoints
+{
+
+    width: 80vw;
+    height: 50vh;
+    background-color: aliceblue;
+    z-index: 10;
+
+}
+
+#lasts
+{
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+#lastss
+{
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+#close
+{
+
+    width: 70%;
+    height: 10vh;
+
+}
+
+
+
+header
+{
+
+    position: fixed;
+    margin: -8px;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gainsboro;
+    background-color: rgb(255, 255, 255);
+    z-index: 10;
+
+}
+
+main
+{
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(42, 223, 178, 0.568);
+    height: 100%;
+    width: 99.9vw; 
+    margin: -8px;
+
+}
+
+div
+{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+h1
+{
+
+    text-align: center;
+
+}
