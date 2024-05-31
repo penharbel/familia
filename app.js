@@ -28,7 +28,7 @@ setInterval(() => {
     {
 
         let o = await db.query("SELECT * FROM dia")
-        
+
         if(o.rows[0].anterior != datahoraD && datahoraH > 6) { 
 
             console.log("rodando relação")
@@ -42,7 +42,7 @@ setInterval(() => {
     
     
         
-}, 1000);
+}, 5000);
     
 async function relacaoPontos()
 {
@@ -65,10 +65,12 @@ async function relacaoPontos()
     }
 
     let o = await db.query("SELECT * FROM dia")
-    o.rows[0].soraiapts += aB
-    o.rows[0].juanpts += aB
+    let s = o.rows[0].soraiapts;
+    let j = o.rows[0].juanpts;
+    s += aB;
+    j += bB;
 
-    await db.query("UPDATE dia SET soraiapts = " + o.rows[0].soraiapts + ", juanpts = " + o.rows[0].juanpts)
+    await db.query("UPDATE dia SET soraiapts = " + s + ", juanpts = " + j)
 
 }
 
