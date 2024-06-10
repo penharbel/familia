@@ -82,38 +82,38 @@ async function dbConect()
     db.connect()
     .then(console.log('Banco conectado'))
 
-    await db.query("CREATE TABLE dia(anterior INT)")
-    await db.query("CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100), pontuasao INT)")
-    await db.query("CREATE TABLE tarefas(nome VARCHAR(100), dono VARCHAR(100), feito VARCHAR(10), pontos INT, definisao VARCHAR(100), tempo INT, tempoemfalta INT, trocar VARCHAR(100))")
+    //await db.query("CREATE TABLE dia(anterior INT)")
+    //await db.query("CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100), pontuasao INT)")
+    //await db.query("CREATE TABLE tarefas(nome VARCHAR(100), dono VARCHAR(100), feito VARCHAR(10), pontos INT, definisao VARCHAR(100), tempo INT, tempoemfalta INT, trocar VARCHAR(100))")
 
 
 
-    await db.query("INSERT INTO logins(login, senha, pontuasao) VALUES('Soraia', 'Karina-luta', 15)")
-    await db.query("INSERT INTO logins(login, senha, pontuasao) VALUES('Juan', 'Pipoca2', -20)")
+    //await db.query("INSERT INTO logins(login, senha, pontuasao) VALUES('Soraia', 'Karina-luta', 15)")
+    //await db.query("INSERT INTO logins(login, senha, pontuasao) VALUES('Juan', 'Pipoca2', -20)")
 
 
-    await db.query("INSERT INTO dia(anterior) VALUES(0)")
+    //await db.query("INSERT INTO dia(anterior) VALUES(0)")
 
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Passar pano', 'Juan', 'nao', 2, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Dobrar as roupas', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Tirar o lixo', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Quintal', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar o quarto da mãe', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Recolher as roupas', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Passar pano', 'Juan', 'nao', 2, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Dobrar as roupas', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Tirar o lixo', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Quintal', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar o quarto da mãe', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Recolher as roupas', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
 
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Estender as Roupas', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar as roupas', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Quintal', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar o quarto Nosso', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar a louça', 'Soraia', 'nao', 2, 'continua', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar a sala', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Estender as Roupas', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar as roupas', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Quintal', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar o quarto Nosso', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar a louça', 'Soraia', 'nao', 2, 'continua', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar a sala', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
 
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Guardar a louça', 'ninguem', 'nao', 1, 'extra', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Limpar o fogão', 'ninguem', 'nao', 1, 'extra', 1, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar o banheiro', 'ninguem', 'nao', 3, 'extra', 3, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Organizar o gruarda roupas', 'ninguem', 'nao', 5, 'extra', 30, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Organizar o hack', 'ninguem', 'nao', 1, 'extra', 7, 0, 'ninguem')")
-    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Limpar a geladeira', 'ninguem', 'nao', 3, 'extra', 30, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Guardar a louça', 'ninguem', 'nao', 1, 'extra', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Limpar o fogão', 'ninguem', 'nao', 1, 'extra', 1, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar o banheiro', 'ninguem', 'nao', 3, 'extra', 3, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Organizar o gruarda roupas', 'ninguem', 'nao', 5, 'extra', 30, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Organizar o hack', 'ninguem', 'nao', 1, 'extra', 7, 0, 'ninguem')")
+    //await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Limpar a geladeira', 'ninguem', 'nao', 3, 'extra', 30, 0, 'ninguem')")
 }
 dbConect();
 
