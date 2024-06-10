@@ -131,7 +131,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('http://localhost:4000/tarefas',
+            fetch('https://familia-8n1x.onrender.com/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -181,7 +181,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('http://localhost:4000/tarefas',
+            fetch('https://familia-8n1x.onrender.com/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -411,7 +411,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('http://localhost:4000/tarefas',
+            fetch('https://familia-8n1x.onrender.com/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -475,7 +475,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('http://localhost:4000/tarefas',
+            fetch('https://familia-8n1x.onrender.com/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -539,7 +539,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('http://localhost:4000/tarefas',
+            fetch('https://familia-8n1x.onrender.com/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -612,7 +612,7 @@ async function ObterInfo(log, sen)
         async function tasks()
         {
 
-            fetch('http://localhost:4000/login',
+            fetch('https://familia-8n1x.onrender.com/login',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -779,7 +779,7 @@ window.addEventListener("load", () => {
     
         }
     
-        fetch('http://localhost:4000/pontos',
+        fetch('https://familia-8n1x.onrender.com/pontos',
         {
             headers: {
                 'Accept': 'application/json',
