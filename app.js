@@ -47,32 +47,33 @@ setInterval(() => {
 async function relacaoPontos()
 {
 
-    let a = await db.query("SELECT * FROM soraia");
-    let b = await db.query("SELECT * FROM juan");
-    let aB = -8;
-    let bB = -9;
-    
-    for(let i = 0; i < a.rows.length; i++) { 
-
-        if(a.rows[i].feito == 'sim') { aB += a.rows[i].pontos }
+    let t = await db.query("SELECT * FROM tarefas");
+    for(let i = 0; i < t.rows.length; i++)
+    {
+        console.log(t.rows[i])
+        if(t.rows[i].feito == 'nao' && t.rows[i].definisao == 'continua')
+        {
+            let u = await db.query("SELECT * FROM logins WHERE login = '" + t.rows[i].dono + "'");
+            let p = u.rows[0].pontuasao;
+            let o = t.rows[i].pontos;
+            p -= o;
+            await db.query("UPDATE logins SET pontuasao = " + p + " WHERE login = '" + u.rows[0].login + "'");
+        } else if(t.rows[i].feito == 'sim' && t.rows[i].definisao == 'extra')
+        {
+            let u = await db.query("SELECT * FROM logins WHERE login = '" + t.rows[i].trocar + "'");
+            let p = u.rows[0].pontuasao;
+            let o = t.rows[i].pontos;
+            p += o;
+            await db.query("UPDATE logins SET pontuasao = " + p + " WHERE login = '" + u.rows[0].login + "'");
+            await db.query("UPDATE tarefas SET trocar = 'ninguem' WHERE nome = '" + t.rows[i].nome + "'");
+        }
 
     }
 
-    for(let i = 0; i < b.rows.length; i++) { 
-
-        if(b.rows[i].feito == 'sim') { bB += b.rows[i].pontos }
-
-    }
-
-    let o = await db.query("SELECT * FROM dia")
-    let s = o.rows[0].soraiapts;
-    let j = o.rows[0].juanpts;
-    s += aB;
-    j += bB;
-
-    await db.query("UPDATE dia SET soraiapts = " + s + ", juanpts = " + j)
+    await db.query("UPDATE tarefas SET feito = 'nao'")
 
 }
+
 
 //database
 async function dbConect()
@@ -80,39 +81,39 @@ async function dbConect()
 
     db.connect()
     .then(console.log('Banco conectado'))
-    
-    //await db.query('CREATE TABLE soraia(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
-    
-    //await db.query('CREATE TABLE juan(tarefas VARCHAR(100), id INT, Feito VARCHAR(10), pontos INT)')
-    
-    //await db.query('CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100))')
 
-    //await db.query("CREATE TABLE registros(data VARCHAR(100), tarefa VARCHAR(100), pessoa VARCHAR(100), feito VARCHAR(100))")
-
-    //await db.query("CREATE TABLE dia(anterior INT, soraiapts INT, juanpts INT)")
-    //await db.query("INSERT INTO dia(anterior, soraiapts, juanpts) VALUES(27, 7, -2)")
+    await db.query("CREATE TABLE dia(anterior INT)")
+    await db.query("CREATE TABLE logins(login VARCHAR(100), senha VARCHAR(100), pontuasao INT)")
+    await db.query("CREATE TABLE tarefas(nome VARCHAR(100), dono VARCHAR(100), feito VARCHAR(10), pontos INT, definisao VARCHAR(100), tempo INT, tempoemfalta INT, trocar VARCHAR(100))")
 
 
-    //await db.query("INSERT INTO logins(login, senha) VALUES('Soraia', 'karina-luta')")
-    //await db.query("INSERT INTO logins(login, senha) VALUES('juan', 'pipoca2')")
+
+    await db.query("INSERT INTO logins(login, senha, pontuasao) VALUES('Soraia', 'Karina-luta', 15)")
+    await db.query("INSERT INTO logins(login, senha, pontuasao) VALUES('Juan', 'Pipoca2', -20)")
 
 
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Passar pano', 1,'nao', 2)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto da mãe', 2,'nao', 1)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Tirar o lixo', 3,'nao', 0.5)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Quintal', 4,'nao', 2)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Recolher a roupa', 5,'nao', 1)")
-    //await db.query("INSERT INTO juan(tarefas, id, Feito, pontos) VALUES('Dobrar a roupa', 6,'nao', 1.5)")
+    await db.query("INSERT INTO dia(anterior) VALUES(0)")
 
-    
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Passar pano', 'Juan', 'nao', 2, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Dobrar as roupas', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Tirar o lixo', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Quintal', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar o quarto da mãe', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Recolher as roupas', 'Juan', 'nao', 1, 'continua', 1, 0, 'ninguem')")
 
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar o quarto', 7,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Arrumar a sala', 8,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Quintal', 9,'nao', 2)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a louça', 10,'nao', 1)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Lavar a roupa', 11,'nao', 1.5)")
-    //await db.query("INSERT INTO soraia(tarefas, id, Feito, pontos) VALUES('Estender a roupa', 12,'nao', 0.5)")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Estender as Roupas', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar as roupas', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Quintal', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar o quarto Nosso', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar a louça', 'Soraia', 'nao', 2, 'continua', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Arrumar a sala', 'Soraia', 'nao', 1, 'continua', 1, 0, 'ninguem')")
 
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Guardar a louça', 'ninguem', 'nao', 1, 'extra', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Limpar o fogão', 'ninguem', 'nao', 1, 'extra', 1, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Lavar o banheiro', 'ninguem', 'nao', 3, 'extra', 3, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Organizar o gruarda roupas', 'ninguem', 'nao', 5, 'extra', 30, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Organizar o hack', 'ninguem', 'nao', 1, 'extra', 7, 0, 'ninguem')")
+    await db.query("INSERT INTO tarefas(nome, dono, feito, pontos, definisao, tempo, tempoemfalta, trocar) VALUES('Limpar a geladeira', 'ninguem', 'nao', 3, 'extra', 30, 0, 'ninguem')")
 }
 dbConect();
 
@@ -144,95 +145,86 @@ app.get('/ADM57655', (req,res) => {
 
 app.post('/login', (req,res) => {
 
-    let Login = req.body.login;
-    let Senha = req.body.senha;
-    let e = false;
-    
-    async function sORn()
-    {
-        let a = await db.query('SELECT * FROM logins')
-        for(let i = 0; i < a.rows.length; i++) { if(a.rows[i].Login == Login || a.rows[i].senha == Senha) { e = true; } }
-        result();
-    }
-    sORn();
-
-    async function result()
-    {
-
-        if(e == true){ 
-            let b = await db.query("SELECT * FROM " + req.body.login)
-            res.send(b.rows)
-    
-        }else{ return };
-
-    }
-
-});
-app.post('/aiponfwaifjnawofn', (req,res) => {
-
-    let d = new Date();
-    let o = {
-        timeZone: 'America/Sao_Paulo',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-    };
-    let l = d.toLocaleString('pt-BR', o);
-
-    db.query("UPDATE " + req.body.pessoa + " SET feito = '" + req.body.feito + "' WHERE ID = " + req.body.tarefa + "");
-    db.query("INSERT INTO registros(data, tarefa, pessoa, feito) VALUES('" + l + "', '" + req.body.tarefa + "', '" + req.body.pessoa + "', '" + req.body.feito + "')")
-    let i = {
-
-        nada: 'nadinha'
-
-    }
-    res.send(JSON.stringify(i))
-
-});
-app.post('/registros', (req,res) => {
-
-    async function obtRegistros()
+    async function login()
     {
         
-        let d = await db.query("SELECT * FROM registros WHERE pessoa = '" + req.body.pessoa + "'");
-        res.send(d.rows)
+        let l = await db.query("SELECT * FROM logins");
+        for(let i = 0; i < l.rows.length; i++)
+        {
+
+            if(l.rows[i].login == req.body.login && l.rows[i].senha == req.body.senha)
+            {
+
+                let a = await db.query("SELECT * FROM tarefas WHERE dono = '" + l.rows[i].login + "'")
+                let b = await db.query("SELECT * FROM tarefas WHERE definisao = 'extra'")
+                let c = a.rows.concat(b.rows);
+                res.send(c);
+
+            }
+            
+        }
 
     }
-    obtRegistros();
+    login();
 
 });
 app.post("/pontos", (req,res) => {
     async function points()
     {
-        let p = await db.query("SELECT * FROM dia")
-        if(req.body.pessoa == 'soraia') {
-        let v = {
-            pontos: p.rows[0].soraiapts,
-        }
-            res.send(v)
-        };
-        if(req.body.pessoa == 'juan') { 
-            let v = {
-                pontos: p.rows[0].juanpts,
-            }
-            res.send(v)
-        };
+        let p = await db.query("SELECT * FROM logins WHERE login = '" + req.body.pessoa + "'")
+        res.send(p.rows)
+
     }
     points();
 });
-app.post('/Ctarefas', (req,res) => {
+app.post('/tarefas', (req,res) => {
 
     async function tasks()
     {
+        console.log(req.body)
+        if(req.body.trocar != 'ninguem' && req.body.definisao == 'extra')
+        {
 
-        let g = await db.query("SELECT * FROM " + req.body.pessoa)
-        res.send(g.rows)
+            let i = await db.query("SELECT * FROM tarefas WHERE nome = '" + req.body.nome + "'")
+            if(req.body.trocar == i.rows[0].trocar)
+            {
+
+                if(req.body.feito == 'nao')
+                {
+
+                    console.log('retirando')
+                    await db.query("UPDATE tarefas SET trocar = 'ninguem' WHERE nome = '" + req.body.nome + "'")
+                    await db.query("UPDATE tarefas SET feito = '" + req.body.feito + "' WHERE nome = '" + req.body.nome + "'")
+                    return;
+
+                }
+                await db.query("UPDATE tarefas SET trocar = '" + req.body.trocar + "' WHERE nome = '" + req.body.nome + "'")
+                await db.query("UPDATE tarefas SET feito = '" + req.body.feito + "' WHERE nome = '" + req.body.nome + "'")
+                return;
+
+            }
+
+            if(i.rows[0].trocar != 'ninguem')
+            {
+                console.log('essa não kkk')
+                return;
+
+            }
+
+            console.log("aceito2")
+            await db.query("UPDATE tarefas SET trocar = '" + req.body.trocar + "' WHERE nome = '" + req.body.nome + "'")
+            await db.query("UPDATE tarefas SET feito = '" + req.body.feito + "' WHERE nome = '" + req.body.nome + "'")
+            
+        } else{
+
+            await db.query("UPDATE tarefas SET feito = '" + req.body.feito + "' WHERE nome = '" + req.body.nome + "'")
+
+        }
+        
 
     }
     tasks()
+    res.send(JSON.stringify({ nome: 'nada' }))
 
 });
 app.post('/altpts', (req,res) => {

@@ -7,24 +7,37 @@
     <script lang="js" src="login.js"></script>
     <title>Login</title>
 </head>
-<body>
-    <header>
+<body id="boridy">
+    <header id="headerI">
         <h1 id="H1Header">Usuario</h1>
-        <button id="BtnHeader"><img id="HeaderButtonImg" src="Imagens/options.png" alt="options"></button>
+        <h1 id="h1pts">adsd</h1>
+        <canvas id="canvapts"></canvas>
+        <button id="BtnHeader">⇲</button>
     </header>
 
     <div id="buffer"></div>
 
-    <main id="mainn">
-        <div>
-            <h1 class="MainH1" id="horario">23:59</h1>
+    <main>
+
+        <div id="divhorario">
+            <h1 class="MainH1" id="horario"></h1>
         </div>
         
-        
+        <div class="objects" id="mainn">
+
+            <h1>TAREFAS ATUAIS</h1>
+
+        </div>
+
+        <div class="objects" id="extras">
+
+            <h1>TAREFAS EXTRAS</h1>
+
+        </div>
 
     </main>
 
-    <div id="DivlogForm">
+    <div id="DivlogForm" style="background: linear-gradient( rgb(172, 0, 0) -100%, rgb(0, 150, 161) );">
         <textarea name="login" id="Login"></textarea>
         <textarea name="senha" id="Senha"></textarea>
         <button id="btnform">Enviar</button>

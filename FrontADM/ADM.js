@@ -32,7 +32,7 @@ function Cdiv(task, confirmacao, id, pessoa)
             document.getElementById(e.id).style.backgroundColor = 'rgb(126, 218, 131)';
             divs[e.id].feito = 'sim';
 
-            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
+            fetch('http://localhost:4000/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -45,7 +45,7 @@ function Cdiv(task, confirmacao, id, pessoa)
 
             document.getElementById(e.id).style.backgroundColor = 'rgb(204, 204, 204)';
             divs[e.id].feito = 'nao';
-            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
+            fetch('http://localhost:4000/aiponfwaifjnawofn', 
             {
             headers: {
             'Accept': 'application/json',
@@ -68,7 +68,7 @@ async function ObterInfo(pessoa)
         pessoa: pessoa,
 
     }
-    fetch('https://familia-8n1x.onrender.com/Ctarefas', 
+    fetch('http://localhost:4000/Ctarefas', 
     {
         headers: {
             'Accept': 'application/json',
@@ -131,7 +131,7 @@ async function reqpts(pessoa, pontos)
         pontos: pontos
 
     }
-    await fetch('https://familia-8n1x.onrender.com/altpts', 
+    await fetch('http://localhost:4000/altpts', 
     {
         headers: {
             'Accept': 'application/json',
@@ -194,7 +194,7 @@ async function obtpts(pessoa)
         pessoa: pessoa,
 
     }
-    fetch('https://familia-8n1x.onrender.com/pontos', 
+    fetch('http://localhost:4000/pontos', 
     {
         headers: {
             'Accept': 'application/json',

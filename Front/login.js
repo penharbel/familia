@@ -1,76 +1,603 @@
 var ids = 0;
-var divs = new Array();
+var tarefas = new Array();
 var crionça = '';
 var timer = 0;
 
-function Cdiv(task, confirmacao, id)
+function Cdiv(task)
 {
-    let e = document.createElement('div');
-    e.setAttribute('class', 'MainDiv');
-    e.setAttribute('id', ids)
+    console.log(task)
+    let t;
+    let d;
+    if(task.definisao == 'continua')
+    {
 
-    let a = '';
-        a += '<h2 class="DivH2">' + task + '</h2>';
-        a += '<button class="DivBtn" id="' + (e.id + 1) +'">✅</button>';
-    e.innerHTML = a;
+        d = document.getElementById("mainn");
+        t = document.createElement('div');
 
-    document.getElementById("mainn").appendChild(e);
-    if(confirmacao == 'sim') { document.getElementById(e.id).style.backgroundColor = 'rgb(126, 218, 131)' }
+        let a = document.createElement('div')
+        let e = document.createElement('h2')
+        let i = document.createElement('button')
+        let AA = document.createElement('div')
+        let Ab = document.createElement('div')
+        let Ac = document.createElement('div')
+        let ABa = document.createElement('h1')
+        let ABb = document.createElement('p')
+        let ACa= document.createElement('button')
+        let ACb= document.createElement('button')
 
-    divs[e.id] = {
+        AA.setAttribute('class', 'taskINFO');
+        Ab.setAttribute('class', 'INFOS');
+        Ac.setAttribute('class', 'INFOS');
+        ABb.style.textAlign = 'center';
+        ABb.innerHTML = 'nenhuma descrição, desculpe';
+        ACa.setAttribute('class', 'btnTASK');
+        ACa.setAttribute('id', task.nome + 'dapdjaiowjdawiod')
+        ACa.style.backgroundColor = 'rgba(207, 0, 0, 0.726)';
+        ACa.innerHTML = 'Não Feito';
+        ACb.setAttribute('class', 'btnTASK');
+        ACb.setAttribute('id', task.nome + '213kr90w8ejfgw')
+        ACb.style.backgroundColor = 'rgba(0, 0, 140, 0.726)'
+        ACb.innerHTML = 'Feito';
+        a.setAttribute('id', task.nome + 'Z');
+        a.setAttribute('class', 'MonoDiv');
+        t.setAttribute('id', task.nome);
+        t.setAttribute('class', 'MainDiv');
+        e.setAttribute('class', 'DivH2');
+        e.setAttribute('id', task.nome + 'A');
+        e.innerHTML = task.nome;
+        i.setAttribute('class', 'DivBtn');
+        i.innerHTML = '🡳';
 
-        tarefa: id,
-        feito: confirmacao,
-        pessoa: crionça
+        Ac.appendChild(ACa);
+        Ac.appendChild(ACb);
+        Ab.appendChild(ABa);
+        Ab.appendChild(ABb);
+        AA.appendChild(Ab);
+        AA.appendChild(Ac);
+        t.appendChild(e);
+        t.appendChild(i);
+        a.appendChild(t);
+        a.appendChild(AA);
+
+        d.appendChild(a);
+
+        if(task.feito == 'sim')
+        {
+
+            ABa.innerHTML = 'Feito'
+            let n = 300;
+            let g = setInterval(() => {
+                n--;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(161, 0, 161) 10%,  rgb(0, 0, 172) ' + n + '%)';
+                if(n <= 110)
+                {
+                    clearInterval(g);
+                }
+            }, 10);
+            
+        } if(task.feito == 'nao')
+        {
+            ABa.innerHTML = 'Incompleto'
+            let n = 300;
+            let g = setInterval(() => {
+
+                n--;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(161, 0, 161) 10%,  rgb(172, 0, 0) ' + n + '%)';
+                if(n <= 110)
+                {
+
+                    clearInterval(g);
+
+                }
+
+            }, 10);
+
+        }
+
+        document.getElementById(ACa.id).addEventListener('click', () => {
+            if(task.feito == 'nao')
+            {
+
+                return;
+
+            }else{
+
+                task.feito = 'nao'
+
+            }
+            ABa.innerHTML = 'Incompleta';
+            
+            let n = 110;
+            let g = setInterval(() => {
+
+                n++;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(161, 0, 161) 10%,  rgb(0, 0, 140) ' + n + '%)';
+                if(n >= 300)
+                {
+
+                    clearInterval(g);
+                    let b = setInterval(() => {
+                        n--;
+                        document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(161, 0, 161) 10%,  rgb(172, 0, 0) ' + n + '%)';
+                        if(n <= 110)
+                        {
+
+                            clearInterval(b);
+
+                        }
+                    }, 10);
+                    
+                }
+
+            }, 10)
+
+            fetch('https://familia-8n1x.onrender.com/tarefas',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(task)
+            })
+
+        });
+
+        document.getElementById(ACb.id).addEventListener('click', () => {
+            
+            if(task.feito == 'sim')
+            {
+
+                return;
+
+            }else{
+
+                task.feito = 'sim'
+
+            }
+            ABa.innerHTML = 'Feita';
+            
+            let n = 110;
+            let g = setInterval(() => {
+
+                n++;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(161, 0, 161) 10%,  rgb(172, 0, 0) ' + n + '%)';
+                if(n >= 310)
+                {
+
+                    clearInterval(g);
+                    let b = setInterval(() => {
+                        n--;
+                        document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(161, 0, 161) 10%,  rgb(0, 0, 140) ' + n + '%)';
+                        if(n <= 110)
+                        {
+
+                            clearInterval(b);
+
+                        }
+                    }, 10);
+                    
+                }
+
+            }, 10)
+
+            fetch('https://familia-8n1x.onrender.com/tarefas',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(task)
+            })
+
+        });
+
+        document.getElementById(t.id).addEventListener('click', () => {
+
+            let l = 0;
+            let Ll = 0;
+            if(a.style.height.replace(/px/, '') <= 80)
+            {
+                l = 80
+                Ll = 3;
+
+            } else if(a.style.height.replace(/px/, '') >= 300)
+            {
+                l = 300
+                Ll = -3;
+                AA.style.display = 'none';
+
+            }
+            
+            let h = setInterval(() => {
+            
+                l += Ll;
+                a.style.height = l + 'px';
+                if(l >= 300)
+                {
+
+                    AA.style.display = 'flex'
+                    clearInterval(h);
+
+                } else if(l <= 80)
+                {
+
+                    clearInterval(h);
+
+                }
+
+            }, 5);
+
+        });
+
+    } else if(task.definisao == 'extra')
+    {
+
+        
+        d = document.getElementById("extras");
+        t = document.createElement('div');
+
+        let p = document.createElement('div')
+        let o = document.createElement('h5')
+        let u = document.createElement('p')
+
+        let a = document.createElement('div')
+        let e = document.createElement('h2')
+        let i = document.createElement('button')
+        let AA = document.createElement('div')
+        let Ab = document.createElement('div')
+        let Ac = document.createElement('div')
+        let ABa = document.createElement('h1')
+        let ABb = document.createElement('p')
+        let ACa = document.createElement('button')
+        let ACb = document.createElement('button')
+        let ACc = document.createElement('button')
+
+        AA.setAttribute('class', 'taskINFO');
+        AA.setAttribute('id', task.nome + 'doawpodawpodjaw');
+        Ab.setAttribute('class', 'INFOS');
+        Ac.setAttribute('class', 'INFOS');
+        ABb.style.textAlign = 'center';
+        ABb.innerHTML = 'nenhuma descrição, desculpe';
+        ACa.setAttribute('class', 'btnTASK');
+        ACa.setAttribute('id', task.nome + 'dapdjaiowjdawiod')
+        ACa.style.backgroundColor = 'rgba(207, 0, 0, 0.726)';
+        ACa.innerHTML = 'Não Feito';
+        ACb.setAttribute('class', 'btnTASK');
+        ACb.setAttribute('id', task.nome + '213kr90w8ejfgw')
+        ACb.style.backgroundColor = 'rgba(0, 0, 140, 0.726)'
+        ACb.innerHTML = 'Feito';
+        ACc.setAttribute('class', 'btnTASK');
+        ACc.setAttribute('id', task.nome + 'awiofjaoif09')
+        ACc.style.backgroundColor = 'rgba(172, 184, 0, 0.726)'
+        ACc.innerHTML = 'Fazendo';
+        a.setAttribute('id', task.nome + 'Z');
+        a.setAttribute('class', 'MonoDiv');
+        t.setAttribute('id', task.nome);
+        t.setAttribute('class', 'MainDiv');
+        e.setAttribute('class', 'DivH2');
+        e.setAttribute('id', task.nome + 'A');
+        e.innerHTML = task.nome;
+        i.setAttribute('class', 'DivBtn');
+        i.innerHTML = '🡳';
+        p.setAttribute('class', 'divfeito')
+        o.innerHTML = 'Feito por'
+        o.setAttribute('class', 'extrapessoa')
+        u.innerHTML = task.trocar;
+        u.setAttribute('class', 'extrapessoa')
+
+        Ac.appendChild(ACa);
+        Ac.appendChild(ACc);
+        Ac.appendChild(ACb);
+        Ab.appendChild(ABa);
+        Ab.appendChild(ABb);
+        AA.appendChild(Ab);
+        AA.appendChild(Ac);
+        t.appendChild(e);
+        t.appendChild(p);
+        t.appendChild(i);
+        a.appendChild(t);
+        p.appendChild(o);
+        p.appendChild(u);
+        a.appendChild(t);
+        a.appendChild(AA);
+
+        d.appendChild(a);
+
+        
+
+        if(task.feito == 'sim')
+        {
+
+            ABa.innerHTML = 'Feito'
+            let n = 300;
+            let g = setInterval(() => {
+                n--;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(0, 0, 172) ' + n + '%)';
+                if(n <= 110)
+                {
+                    clearInterval(g);
+                }
+            }, 10);
+            
+        } 
+        if(task.feito == 'nao')
+        {
+            ABa.innerHTML = 'Incompleto'
+            let n = 300;
+            let g = setInterval(() => {
+
+                n--;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(172, 0, 0) ' + n + '%)';
+                if(n <= 110)
+                {
+
+                    clearInterval(g);
+
+                }
+
+            }, 10);
+
+        }
+        if(task.feito == 'fazendo')
+        {
+            ABa.innerHTML = 'Fazendo'
+            let n = 300;
+            let g = setInterval(() => {
+
+                n--;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(184, 184, 0) ' + n + '%)';
+                if(n <= 110)
+                {
+
+                    clearInterval(g);
+
+                }
+
+            }, 10);
+
+        }
+
+        document.getElementById(ACa.id).addEventListener('click', () => {
+
+            let Ca = '';
+            if(task.feito == 'nao')
+            {
+
+                return;
+
+            }else{
+
+                if(task.feito == 'sim')
+                {
+
+                    Ca = '0, 0, 172';
+
+                } else if(task.feito == 'fazendo')
+                {
+
+                    Ca = '184, 181, 0';
+
+                }
+                task.feito = 'nao'
+
+            }
+            task.trocar = crionça;
+            u.innerHTML = 'ninguem';
+            ABa.innerHTML = 'Incompleto';
+            
+            let n = 110;
+            let g = setInterval(() => {
+
+                n++;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(' + Ca + ') ' + n + '%)';
+                if(n >= 300)
+                {
+
+                    clearInterval(g);
+                    let b = setInterval(() => {
+                        n--;
+                        document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(172, 0, 0) ' + n + '%)';
+                        if(n <= 110)
+                        {
+
+                            clearInterval(b);
+
+                        }
+                    }, 10);
+                    
+                }
+
+            }, 10)
+
+            fetch('https://familia-8n1x.onrender.com/tarefas',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(task)
+            })
+
+        });
+
+        document.getElementById(ACb.id).addEventListener('click', () => {
+
+            let Ca = '';
+            if(task.feito == 'sim')
+            {
+
+                return;
+
+            }else{
+
+                if(task.feito == 'nao')
+                {
+
+                    Ca = '172, 0, 0';
+
+                } else if(task.feito == 'fazendo')
+                {
+
+                    Ca = '184, 181, 0';
+
+                }
+                task.feito = 'sim'
+
+            }
+            task.trocar = crionça;
+            u.innerHTML = crionça;
+            ABa.innerHTML = 'Feita';
+            
+            let n = 110;
+            let g = setInterval(() => {
+
+                n++;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(' + Ca + ') ' + n + '%)';
+                if(n >= 310)
+                {
+
+                    clearInterval(g);
+                    let b = setInterval(() => {
+                        n--;
+                        document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(0, 0, 140) ' + n + '%)';
+                        if(n <= 110)
+                        {
+
+                            clearInterval(b);
+
+                        }
+                    }, 10);
+                    
+                }
+
+            }, 10)
+
+            fetch('https://familia-8n1x.onrender.com/tarefas',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(task)
+            })
+
+        });
+
+        document.getElementById(ACc.id).addEventListener('click', () => {
+
+            let Ca = '';
+            if(task.feito == 'fazendo')
+            {
+
+                return;
+
+            }else{
+
+                if(task.feito == 'nao')
+                {
+
+                    Ca = '172, 0, 0';
+
+                } else if(task.feito == 'sim')
+                {
+
+                    Ca = '0, 0, 140';
+
+                }
+                task.feito = 'fazendo'
+
+            }
+            task.trocar = crionça;
+            u.innerHTML = crionça;
+            ABa.innerHTML = 'Fazendo';
+            
+            let n = 110;
+            let g = setInterval(() => {
+
+                n++;
+                document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(' + Ca + ') ' + n + '%)';
+                if(n >= 310)
+                {
+
+                    clearInterval(g);
+                    let b = setInterval(() => {
+                        n--;
+                        document.getElementById(t.id).style.background = 'linear-gradient(90deg, rgb(172, 98, 0) 10%,  rgb(184, 184, 0) ' + n + '%)';
+                        if(n <= 110)
+                        {
+
+                            clearInterval(b);
+
+                        }
+                    }, 10);
+                    
+                }
+
+            }, 10)
+
+            fetch('https://familia-8n1x.onrender.com/tarefas',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(task)
+            })
+
+        });
+
+        document.getElementById(t.id).addEventListener('click', () => {
+
+            let l = 0;
+            let Ll = 0;
+            if(a.style.height.replace(/px/, '') <= 80)
+            {
+                l = 80;
+                Ll = 3;
+
+            } else if(a.style.height.replace(/px/, '') >= 300)
+            {
+                l = 300;
+                Ll = -3;
+                AA.style.display = 'none';
+
+            }
+            
+            let h = setInterval(() => {
+            
+                l += Ll;
+                a.style.height = l + 'px';
+                if(l >= 300)
+                {
+
+                    AA.style.display = 'flex';
+                    clearInterval(h);
+
+                } else if(l <= 80)
+                {
+
+                    clearInterval(h);
+
+                }
+
+            }, 5);
+
+        });
 
     }
 
-    document.getElementById(e.id + 1).addEventListener('click', () => {
-
-        if(divs[e.id].feito == 'nao') { 
-
-            document.getElementById(e.id).style.backgroundColor = 'rgb(126, 218, 131)';
-            divs[e.id].feito = 'sim';
-
-            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
-            {
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(divs[e.id])
-            }).then((response) => { 
-            response.json().then((informacoes) => { oraganizandoCdiv(informacoes) })
-            })
-
-        }else{  
-
-            document.getElementById(e.id).style.backgroundColor = 'rgb(204, 204, 204)';
-            divs[e.id].feito = 'nao';
-            fetch('https://familia-8n1x.onrender.com/aiponfwaifjnawofn', 
-            {
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(divs[e.id])
-            }).then((response) => { 
-            response.json().then((informacoes) => { oraganizandoCdiv(informacoes) })
-            })
-        }   
-
-    }, false)
-    ids++;
 }
 
 async function ObterInfo(log, sen)
 {
 
-    document.getElementById("DivlogForm").style.display = 'none';
-
     crionça = log;
+    document.getElementById("DivlogForm").style.display = 'none';    
     document.getElementById("H1Header").innerHTML = log;
 
     let e = { 
@@ -81,57 +608,136 @@ async function ObterInfo(log, sen)
     };
 
     setInterval(() => {
-        fetch('https://familia-8n1x.onrender.com/login',
+
+        async function tasks()
         {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(e)
-        }).then((response) => { 
-            response.json().then((informacoes) => { oraganizandoCdiv(informacoes) })
-        })
+
+            fetch('https://familia-8n1x.onrender.com/login',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(e)
+            }).then((response) => { 
+                response.json().then((informacoes) => { 
+    
+                    for(let i = 0; i < informacoes.length; i++)
+                    {
+    
+                        tarefas[i] = informacoes[i];
+    
+                    }
+    
+                })
+            })
+
+        }
+        tasks();
+    
+    }, 1000);
+
+    setTimeout(() => {
+
+        document.getElementById("mainn").innerHTML = '<h1>TAREFAS ATUAIS</h1>';
+        document.getElementById("extras").innerHTML = '<h1>TAREFAS EXTRAS</h1>';
+        for( let i = 0; i < tarefas.length; i++ ) { 
+
+            Cdiv( tarefas[i] )
+
+        }
+        
     }, 1500);
 
-}
+    
 
-function oraganizandoCdiv(objetos)
-{
+    setInterval(() => {
+        
+    }, 1000);
 
-    let d = '<div>';
-    d += '<h1 class="MainH1" id="horario">23:59</h1>';
-    d += '</div>';
-    document.getElementById("mainn").innerHTML = d;
-    for( let i = 0; i < objetos.length; i++ ) { Cdiv( objetos[i].tarefas, objetos[i].feito, objetos[i].id ); }
+    
 
 }
 
-function criandoregistro(objetos)
+var control = 0;
+function animatetoDown(o, n, v, i, t)
 {
+    control = i;
+    let p = setInterval(() => {
+        let l = o.style.height.replace(/px/, '');
+        n.style.top = (l - 25) + 'px';
 
-    for(let i = 0; i < objetos.length; i++) {criarRegistro(objetos[i])}
+        control += v;
+        o.style.height = control + "px";
+        if(control == t)
+        {
+
+            control = 0;
+
+            if(t > 500)
+            {
+
+                document.getElementById("canvapts").style.display = 'flex';
+                document.getElementById("h1pts").style.display = 'flex';
+
+            }else{
+
+                document.getElementById("canvapts").style.display = 'none';
+                document.getElementById("h1pts").style.display = 'none';
+
+            }
+            
+
+            clearInterval(p);
+            
+        }
+
+    }, 1); 
 
 }
 
-function criarRegistro(registro)
+function bolha()
 {
 
-    let E = document.createElement('div');
-    E.setAttribute('class', 'registros');
+    let h = document.getElementById("boridy");
+    let g = document.createElement('img');
+    let w = (Math.random() * 600) - 200;
+    let t = Math.random() * 500;
+    g.setAttribute('class', 'bolhas');
+    g.style.height = t + 'px';
+    g.style.width = t + 'px';
+    g.style.left = w + 'px';
+    g.src = 'Imagens/bolha.png'
+    h.appendChild(g)
 
-    let b = document.createElement('h2');
-    b.setAttribute('class', 'regish2');
-    b.innerHTML = registro.data;
+    let p = -300;
 
-    let c = document.createElement('p');
-    c.setAttribute('class', 'regisp');
-    c.innerHTML = registro.feito
+    let n = setInterval(() => {
+        
+        let y = g.style.top.replace(/px/, '')
+        p += 1;
+        g.style.top = p + 'px';
+        if(y > 2000)
+        {
 
-    E.appendChild(b);
-    E.appendChild(c);
+            h.removeChild(g);
+            clearInterval(n)
 
-    document.getElementById("divpoints").appendChild(E)
+        }
+
+    }, 10);
+
+}
+
+function toPts(pts)
+{
+
+    let c = document.getElementById("canvapts");
+
+    let ctx = c.getContext("2d");
+    ctx.fillStyle = "green";
+    ctx.fillRect(0, 0, 400, pts)
 
 }
 
@@ -144,76 +750,54 @@ window.addEventListener("load", () => {
         let a = document.getElementById('Login').value;
         let b = document.getElementById('Senha').value;
         ObterInfo(a, b);
-    
-    }, false)
+        let i = document.getElementById("Divinfo");
+        document.getElementById("boridy").removeChild(i);
 
-    document.getElementById("BtnHeader").addEventListener('click', () => {
+    }, false);
 
-        document.getElementById("Divinfo").style.display = 'flex';
-        let aS = crionça.toLowerCase();
 
-        let a = {
+    document.getElementById("BtnHeader").addEventListener("click", () => {
 
-            pessoa: aS,
+        let i = document.getElementById("headerI");
+        let n = document.getElementById("BtnHeader");
+        control = 100;
+        let h = i.style.height.replace(/px/, '')
+        if(h >= 300)
+        {
+            animatetoDown(i, n, -3, 700, 100);
+
+        } else if(h <= 100)
+        {
+
+            animatetoDown(i, n, 3, 100, 700);
 
         }
 
-        let b = {
+        let e = {
 
             pessoa: crionça,
-
+    
         }
-
-        async function pontos()
+    
+        fetch('https://familia-8n1x.onrender.com/pontos',
         {
-
-            await fetch('https://familia-8n1x.onrender.com/pontos',
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify(a)
-            }).then((response) => { 
-                response.json().then((informacoes) => { 
-
-                    let y = '<div id="points">';
-                    y += '<h1 style="margin: 0px;">Pontos</h1>';
-                    y += '<h2 style="margin: 0px; color: green;" id="pontuação">'+ informacoes.pontos +'</h2>';
-                    y += ' </div>';
-
-                    document.getElementById("divpoints").innerHTML = y;
-
-                })
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(e)
+        }).then((response) => {
+    
+            response.json().then((pontos) => { 
+                document.getElementById("h1pts").innerHTML = pontos[0].pontuasao ;
+                toPts(pontos[0].pontusasao);
             })
+    
+        })
+        
 
-        }
-        pontos();
-
-        async function registrospost()
-        {
-
-            await fetch('https://familia-8n1x.onrender.com/registros',
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify(b)
-            }).then((response) => { 
-                response.json().then((informacoes) => { 
-
-                    criandoregistro(informacoes);
-
-                })
-            })
-
-        }
-        registrospost();
-
-    })
+    });
 
 
     document.getElementById("Divinfo").addEventListener("click", () => {
@@ -221,8 +805,6 @@ window.addEventListener("load", () => {
         document.getElementById("Divinfo").style.display = "none";
 
     })
-
-    
 
 }, false)
 
@@ -240,3 +822,8 @@ setInterval(() => {
 
 }, 1000);
 
+setInterval(() => {
+    
+    bolha();
+
+}, 700);
