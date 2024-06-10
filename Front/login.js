@@ -131,7 +131,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('https://familia-8n1x.onrender.com/tarefas',
+            fetch('http://localhost:4000/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -181,7 +181,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('https://familia-8n1x.onrender.com/tarefas',
+            fetch('http://localhost:4000/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -411,7 +411,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('https://familia-8n1x.onrender.com/tarefas',
+            fetch('http://localhost:4000/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -475,7 +475,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('https://familia-8n1x.onrender.com/tarefas',
+            fetch('http://localhost:4000/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -539,7 +539,7 @@ function Cdiv(task)
 
             }, 10)
 
-            fetch('https://familia-8n1x.onrender.com/tarefas',
+            fetch('http://localhost:4000/tarefas',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -612,7 +612,7 @@ async function ObterInfo(log, sen)
         async function tasks()
         {
 
-            fetch('https://familia-8n1x.onrender.com/login',
+            fetch('http://localhost:4000/login',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -700,7 +700,7 @@ function animatetoDown(o, n, v, i, t)
 function bolha()
 {
 
-    let h = document.getElementById("boridy");
+    let h = document.getElementById("bolhadiv");
     let g = document.createElement('img');
     let w = (Math.random() * 600) - 200;
     let t = Math.random() * 500;
@@ -718,7 +718,7 @@ function bolha()
         let y = g.style.top.replace(/px/, '')
         p += 1;
         g.style.top = p + 'px';
-        if(y > 2000)
+        if(y > 1000)
         {
 
             h.removeChild(g);
@@ -779,7 +779,7 @@ window.addEventListener("load", () => {
     
         }
     
-        fetch('https://familia-8n1x.onrender.com/pontos',
+        fetch('http://localhost:4000/pontos',
         {
             headers: {
                 'Accept': 'application/json',

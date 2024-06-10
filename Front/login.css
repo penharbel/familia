@@ -4,6 +4,7 @@ body
 {
 
     overflow-x: hidden;
+    width: 100vw;
 
 }
 
@@ -342,6 +343,17 @@ body
 
     display: none;
     
+}
+
+#bolhadiv
+{
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    margin: -8px;
+
 }
 
 
