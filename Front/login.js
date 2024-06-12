@@ -20,7 +20,7 @@ function Cdiv(task)
         let AA = document.createElement('div')
         let Ab = document.createElement('div')
         let Ac = document.createElement('div')
-        let ABa = document.createElement('h1')
+        let ABa = document.createElement('h2')
         let ABb = document.createElement('p')
         let ACa= document.createElement('button')
         let ACb= document.createElement('button')
@@ -248,7 +248,7 @@ function Cdiv(task)
         let AA = document.createElement('div')
         let Ab = document.createElement('div')
         let Ac = document.createElement('div')
-        let ABa = document.createElement('h1')
+        let ABa = document.createElement('h2')
         let ABb = document.createElement('p')
         let ACa = document.createElement('button')
         let ACb = document.createElement('button')
@@ -258,6 +258,9 @@ function Cdiv(task)
         AA.setAttribute('id', task.nome + 'doawpodawpodjaw');
         Ab.setAttribute('class', 'INFOS');
         Ac.setAttribute('class', 'INFOS');
+
+        ABa.setAttribute('class', 'h1task');
+        
         ABb.style.textAlign = 'center';
         ABb.innerHTML = 'nenhuma descrição, desculpe';
         ACa.setAttribute('class', 'btnTASK');
@@ -670,25 +673,25 @@ function animatetoDown(o, n, v, i, t)
 
         control += v;
         o.style.height = control + "px";
+        if(control < 300){
+
+            document.getElementById("canvapts").style.display = 'none';
+            document.getElementById("h1pts").style.display = 'none';
+            
+
+        }
         if(control == t)
         {
 
             control = 0;
 
-            if(t > 500)
+            if(t > 390)
             {
 
                 document.getElementById("canvapts").style.display = 'flex';
                 document.getElementById("h1pts").style.display = 'flex';
 
-            }else{
-
-                document.getElementById("canvapts").style.display = 'none';
-                document.getElementById("h1pts").style.display = 'none';
-
             }
-            
-
             clearInterval(p);
             
         }
@@ -718,7 +721,7 @@ function bolha()
         let y = g.style.top.replace(/px/, '')
         p += 1;
         g.style.top = p + 'px';
-        if(y > 1000)
+        if(y > 810)
         {
 
             h.removeChild(g);
@@ -733,11 +736,15 @@ function bolha()
 function toPts(pts)
 {
 
+    let Pts = pts * 1.5;
+    let d = 150;
     let c = document.getElementById("canvapts");
 
     let ctx = c.getContext("2d");
-    ctx.fillStyle = "green";
-    ctx.fillRect(0, 0, 400, pts)
+    ctx.fillStyle = "rgb(0, 71, 100)";
+    console.log('foi?')
+    ctx.fillRect(0, (d - Pts), 300, Pts);
+    
 
 }
 
@@ -758,21 +765,6 @@ window.addEventListener("load", () => {
 
     document.getElementById("BtnHeader").addEventListener("click", () => {
 
-        let i = document.getElementById("headerI");
-        let n = document.getElementById("BtnHeader");
-        control = 100;
-        let h = i.style.height.replace(/px/, '')
-        if(h >= 300)
-        {
-            animatetoDown(i, n, -3, 700, 100);
-
-        } else if(h <= 100)
-        {
-
-            animatetoDown(i, n, 3, 100, 700);
-
-        }
-
         let e = {
 
             pessoa: crionça,
@@ -791,11 +783,25 @@ window.addEventListener("load", () => {
     
             response.json().then((pontos) => { 
                 document.getElementById("h1pts").innerHTML = pontos[0].pontuasao ;
-                toPts(pontos[0].pontusasao);
+                toPts(pontos[0].pontuasao);
             })
     
         })
-        
+
+        let i = document.getElementById("headerI");
+        let n = document.getElementById("BtnHeader");
+        control = 100;
+        let h = i.style.height.replace(/px/, '')
+        if(h >= 300)
+        {
+            animatetoDown(i, n, -3, 400, 100);
+
+        } else if(h <= 100)
+        {
+
+            animatetoDown(i, n, 3, 100, 400);
+
+        }
 
     });
 
@@ -826,4 +832,4 @@ setInterval(() => {
     
     bolha();
 
-}, 700);
+}, 800);

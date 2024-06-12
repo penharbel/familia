@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+@font-face
+{
+
+    font-family: PrincipalOtf;
+    src: url("font/aBlackLives.otf");
+
+}
+@font-face
+{
+
+    font-family: PrincipalTtf;
+    src: url("font/aBlackLives.ttf");
+
+}
+
 body
 {
 
@@ -196,6 +211,13 @@ body
 
 }
 
+.h1task
+{
+
+    font-size: 20px;
+
+}
+
 
 
 #H1Header
@@ -327,14 +349,14 @@ body
 #canvapts
 {
 
-    width: 100px;
-    height: 400px;
-    border: 1px solid rgb(0, 38, 49);
+    width: 200px;
+    height: 200px;
+    border: 0px;
+    border-radius: 50%;
     display: none;
-    border-bottom-left-radius: 200px;
-    border-bottom-right-radius: 200px;
     align-items: center;
     justify-content: center;
+    border: 2px solid rgb(0, 55, 71);
 
 }
 
@@ -342,6 +364,9 @@ body
 {
 
     display: none;
+    position: absolute;
+    color: rgb(0, 1, 37);
+    top: 50%;
     
 }
 
@@ -390,3 +415,27 @@ main
     background: linear-gradient(rgb(68, 179, 212) 0%, rgb(7, 84, 107) 70%);
 
 }
+
+h1
+{
+
+    font-family: PrincipalOtf, PrincipalTtf;
+
+}
+
+h2
+{
+
+    font-family: PrincipalOtf, PrincipalTtf;
+    font-size: 20px;
+
+}
+
+p
+{
+
+    font-family: PrincipalOtf, PrincipalTtf;
+    font-size: 16px;
+
+}
+
